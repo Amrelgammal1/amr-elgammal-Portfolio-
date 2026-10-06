@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio - Amr Elgammal | Front-End Developer">
+<title>Amr Elgammal | Front-End Developer</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Cairo',Arial,sans-serif;
+  background:#07070b;
+  color:#f5f5f7;
+  line-height:1.8;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1100px,92%);margin:auto}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(7,7,11,.78);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:22px;font-weight:800;letter-spacing:.5px}
+.logo span{color:#8b5cf6}
+.nav-links{display:flex;gap:28px;color:#bdbdc8;font-size:14px}
+.nav-links a:hover{color:#fff}
+.menu{display:none;font-size:25px;cursor:pointer}
+
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  position:relative;
+  padding-top:72px;
+}
+.glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.28;pointer-events:none}
+.g1{width:320px;height:320px;background:#7c3aed;top:10%;right:-100px}
+.g2{width:260px;height:260px;background:#2563eb;bottom:5%;left:-100px}
+.hero-content{max-width:780px}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(139,92,246,.4);
+  background:rgba(139,92,246,.08);
+  color:#c4b5fd;padding:7px 14px;border-radius:999px;
+  font-size:13px;margin-bottom:22px;
+}
+.dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 12px #22c55e}
+h1{font-size:clamp(42px,7vw,76px);line-height:1.1;font-weight:800;margin-bottom:20px}
+.gradient{background:linear-gradient(90deg,#a78bfa,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#aaaab8;font-size:18px;max-width:650px;margin-bottom:30px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  padding:12px 22px;border-radius:12px;font-weight:700;font-size:14px;
+  border:1px solid rgba(255,255,255,.1);transition:.25s;cursor:pointer
+}
+.primary{background:#fff;color:#08080b}
+.primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,255,255,.12)}
+.secondary{background:#111117;color:#fff}
+.secondary:hover{background:#18181f;transform:translateY(-2px)}
+
+section{padding:95px 0}
+.section-title{font-size:34px;margin-bottom:10px}
+.section-sub{color:#9696a4;margin-bottom:38px}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:linear-gradient(145deg,#111118,#0c0c11);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;padding:26px;
+  transition:.3s;
+}
+.card:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.35)}
+.icon{
+  width:48px;height:48px;border-radius:14px;
+  display:grid;place-items:center;font-size:23px;
+  background:rgba(139,92,246,.13);margin-bottom:18px;
+}
+.card h3{margin-bottom:8px;font-size:19px}
+.card p{color:#9999a7;font-size:14px}
+
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.project{
+  min-height:245px;border-radius:20px;padding:26px;
+  position:relative;overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  background:#101017;
+}
+.project:before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 80% 20%,rgba(139,92,246,.2),transparent 42%);
+}
+.project > *{position:relative}
+.project-num{color:#8b5cf6;font-size:13px;font-weight:800}
+.project h3{font-size:24px;margin:22px 0 8px}
+.project p{color:#9d9daa;font-size:14px;max-width:500px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.tag{font-size:12px;color:#c9c9d2;background:#181820;padding:5px 10px;border-radius:999px}
+
+.skills{display:flex;gap:12px;flex-wrap:wrap}
+.skill{
+  padding:10px 16px;border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;background:#101017;color:#d8d8e0;font-size:14px
+}
+
+.contact{
+  background:linear-gradient(145deg,#111118,#0b0b10);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:25px;padding:45px;text-align:center;
+}
+.contact p{color:#a1a1ae;margin:10px auto 25px;max-width:600px}
+footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.07);color:#777783;text-align:center;font-size:13px}
+
+@media(max-width:760px){
+  .nav-links{display:none;position:absolute;top:72px;left:0;right:0;background:#09090d;padding:20px;flex-direction:column;gap:14px}
+  .nav-links.open{display:flex}
+  .menu{display:block}
+  .cards,.projects{grid-template-columns:1fr}
+  section{padding:70px 0}
+  .contact{padding:30px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="#home" class="logo">Amr<span>.</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">الرئيسية</a>
+      <a href="#services">الخدمات</a>
+      <a href="#projects">المشاريع</a>
+      <a href="#skills">المهارات</a>
+      <a href="#contact">تواصل</a>
+    </div>
+    <div class="menu" onclick="toggleMenu()">☰</div>
+  </div>
+</nav>
+
+<main>
+<section class="hero" id="home">
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="badge"><span class="dot"></span> متاح لمشاريع جديدة</div>
+      <h1>أهلاً، أنا <span class="gradient">Amr Elgammal</span></h1>
+      <p>
+        Front-End Developer بعمل مواقع ويب عصرية وسريعة ومتجاوبة مع الموبايل.
+        بحوّل الأفكار لصفحات حقيقية شكلها احترافي وسهلة الاستخدام.
+      </p>
+      <div class="buttons">
+        <a class="btn primary" href="#projects">شوف شغلي ↓</a>
+        <a class="btn secondary" href="#contact">كلّمني</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">إيه اللي أقدر أعمله؟</h2>
+    <p class="section-sub">خدمات مناسبة للمشاريع الصغيرة والأشخاص اللي محتاجين وجود احترافي على الإنترنت.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🌐</div>
+        <h3>مواقع ويب</h3>
+        <p>تصميم وتنفيذ مواقع حديثة وسريعة ومتوافقة مع الموبايل والكمبيوتر.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🚀</div>
+        <h3>Landing Pages</h3>
+        <p>صفحات هبوط جذابة لعرض منتج أو خدمة وتحويل الزائر لعميل.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎨</div>
+        <h3>صفحات مخصصة</h3>
+        <p>صفحات مناسبات، Portfolio، منيو إلكترونية، وصفحات شخصية بتصميم خاص.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">مشاريعي</h2>
+    <p class="section-sub">نماذج من أنواع المشاريع اللي أقدر أنفذها.</p>
+    <div class="projects">
+      <div class="project">
+        <div class="project-num">01 / WEB GAME</div>
+        <h3>Chicken Blaster 🐔</h3>
+        <p>لعبة متصفح تفاعلية بتصميم عربي، تحكم باللمس والكيبورد وواجهة متجر.</p>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+      </div>
+      <div class="project">
+        <div class="project-num">02 / PERSONAL</div>
+        <h3>Memory Page ❤️</h3>
+        <p>صفحة تذكارية مخصصة بتصميم Dark Mode ورسائل ومؤقت وصور.</p>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+      </div>
+      <div class="project">
+        <div class="project-num">03 / EVENT</div>
+        <h3>Birthday Page 🎂</h3>
+        <p>صفحة عيد ميلاد تفاعلية بخلفية وصور ورسالة تظهر عند الضغط على الزر.</p>
+        <div class="tags"><span class="tag">Responsive</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
+      </div>
+      <div class="project">
+        <div class="project-num">04 / BUSINESS</div>
+        <h3>Business Landing Page</h3>
+        <p>نموذج Landing Page لمحل أو مشروع صغير، جاهز للتعديل وإضافة بيانات العميل.</p>
+        <div class="tags"><span class="tag">UI</span><span class="tag">Responsive</span><span class="tag">JavaScript</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title">مهاراتي</h2>
+    <p class="section-sub">التقنيات اللي بستخدمها أو بطورها حاليًا.</p>
+    <div class="skills">
+      <span class="skill">HTML5</span>
+      <span class="skill">CSS3</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">Responsive Design</span>
+      <span class="skill">UI Design</span>
+      <span class="skill">Git / GitHub</span>
+      <span class="skill">Canva</span>
+      <span class="skill">CapCut</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact">
+      <h2>عندك فكرة؟ خلينا ننفذها 🔥</h2>
+      <p>لو محتاج موقع شخصي، Landing Page، صفحة لمشروعك أو أي فكرة بسيطة للويب، ابعتلي تفاصيلها.</p>
+      <div class="buttons" style="justify-content:center">
+        <a class="btn primary" href="https://wa.me/201207256639" target="_blank" rel="noopener">📱 ابعتلي واتس</a>
+        <a class="btn secondary" href="#home">العودة للأعلى ↑</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  © 2026 Amr Elgammal — Built with HTML, CSS & JavaScript.
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+});
+</script>
+</body>
+</html>
